@@ -145,6 +145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+        type: 3}
+      propertyPath: IsEquipped
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8671229727547508681, guid: c78cf3802c079b14eb71b51b9b819257,
         type: 3}
       propertyPath: m_Pivot.x
@@ -311,6 +316,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackpackGrid: {fileID: 1537007912}
   CharacterGrid: {fileID: 0}
+  WeaponSlot: {fileID: 285143687}
+  ArmorSlot: {fileID: 1417028112}
+  HelmetSlot: {fileID: 628503606}
+  RingSlot: {fileID: 1924070541}
+  NecklaceSlot: {fileID: 1805585012}
+  BootsSlot: {fileID: 1149935059}
   ItemSlotPrefab: {fileID: 1727620386053811707, guid: c78cf3802c079b14eb71b51b9b819257,
     type: 3}
 --- !u!1 &124751367
@@ -662,7 +673,7 @@ MonoBehaviour:
   m_Vertical: 1
   m_MovementType: 2
   m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Inertia: 0
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 92
   m_Viewport: {fileID: 2044945739}
@@ -713,6 +724,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202355078}
   m_CullTransparentMesh: 1
+--- !u!114 &285143687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+    type: 3}
+  m_PrefabInstance: {fileID: 90849391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921054cc33abe994da0ace87d6e39854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +876,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HelmetSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+        type: 3}
+      propertyPath: IsEquipped
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8671229727547508681, guid: c78cf3802c079b14eb71b51b9b819257,
         type: 3}
@@ -1226,6 +1254,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582747682}
   m_CullTransparentMesh: 1
+--- !u!114 &628503606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+    type: 3}
+  m_PrefabInstance: {fileID: 377172496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921054cc33abe994da0ace87d6e39854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &663861377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2065,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArmorSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+        type: 3}
+      propertyPath: IsEquipped
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8671229727547508681, guid: c78cf3802c079b14eb71b51b9b819257,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2161,6 +2206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BootsSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+        type: 3}
+      propertyPath: IsEquipped
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8671229727547508681, guid: c78cf3802c079b14eb71b51b9b819257,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2274,6 +2324,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1149935057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149935059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+    type: 3}
+  m_PrefabInstance: {fileID: 1149935057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921054cc33abe994da0ace87d6e39854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154225870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,6 +2437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NecklaceSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+        type: 3}
+      propertyPath: IsEquipped
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8671229727547508681, guid: c78cf3802c079b14eb71b51b9b819257,
         type: 3}
@@ -2889,6 +2956,18 @@ MonoBehaviour:
   Fade: {fileID: 196321020}
   Content: {fileID: 1012595526}
   ActiveOnStartup: 1
+--- !u!114 &1417028112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+    type: 3}
+  m_PrefabInstance: {fileID: 1095068527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921054cc33abe994da0ace87d6e39854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1480353924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3546,18 @@ MonoBehaviour:
   m_Spacing: {x: 8, y: 8}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1805585012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+    type: 3}
+  m_PrefabInstance: {fileID: 1174470922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921054cc33abe994da0ace87d6e39854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1870038896
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,6 +3716,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RingSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+        type: 3}
+      propertyPath: IsEquipped
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8671229727547508681, guid: c78cf3802c079b14eb71b51b9b819257,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3738,6 +3834,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1924070539}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924070541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407366899062840813, guid: c78cf3802c079b14eb71b51b9b819257,
+    type: 3}
+  m_PrefabInstance: {fileID: 1924070539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921054cc33abe994da0ace87d6e39854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2042408052
 GameObject:
   m_ObjectHideFlags: 0

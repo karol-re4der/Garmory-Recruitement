@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class Shortcuts
 {
+    #region shortcuts
     private static Inventory _inv;
     public static Inventory Inventory
     {
@@ -16,7 +18,9 @@ public static class Shortcuts
             return _inv;
         }
     }
+    #endregion
 
+    #region paths
     public static string RaritySpritePath = "Textures/Items/Rarity/ItemRarity{0}";
     public static string CategorySpritePath = "Textures/Items/Rarity/CategoryIcon{0}";
     public static string WeaponSpritePath = "Textures/Items/Weapon/{0}Weapon";
@@ -25,5 +29,9 @@ public static class Shortcuts
     public static string RingSpritePath = "Textures/Items/Ring/{0}Ring";
     public static string NecklaceSpritePath = "Textures/Items/Necklace/{0}Necklace";
     public static string BootsSpritePath = "Textures/Items/Boots/{0}Boots";
+    #endregion
 
+    #region settings
+    public static TimeSpan DoubleClickSpeed = TimeSpan.FromSeconds(0.5);
+    #endregion
 }

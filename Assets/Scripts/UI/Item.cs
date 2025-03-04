@@ -22,7 +22,7 @@ public enum ItemRarity
     Legendary
 }
 
-public class Item : MonoBehaviour
+public class Item
 {
     public ItemCategory Category;
     public ItemRarity Rarity;
