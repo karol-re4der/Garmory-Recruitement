@@ -26,7 +26,7 @@ public static class Shortcuts
         {
             if (_char == null)
             {
-                _char = Camera.main.GetComponent<CharacterHandler>();
+                _char = GameObject.Find("Player/")?.GetComponent<CharacterHandler>();
             }
             return _char;
         }
@@ -87,6 +87,9 @@ public static class Shortcuts
     public static TimeSpan DOUBLE_CLICK_SPEED = TimeSpan.FromSeconds(0.5);
     public static int INVENTORY_SIZE = 100;
     public static TimeSpan TOAST_DELAY = TimeSpan.FromSeconds(0.5);
+    public static float MOVEMENT_SPEED = 10f;
+    public static float ROTATION_SPEED = 5f;
+    public static float MAX_VERTICAL_ROTATION = 30; //in degrees
     #endregion
 
     #region stats
