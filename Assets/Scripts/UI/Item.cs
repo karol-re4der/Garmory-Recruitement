@@ -5,6 +5,7 @@ using System;
 
 public enum ItemCategory
 {
+    Any,
     Armor,
     Weapon,
     Helmet,
@@ -32,7 +33,7 @@ public class Item
 
     public void Randomize()
     {
-        Category = (ItemCategory) UnityEngine.Random.Range(0, 6);
+        Category = (ItemCategory) (UnityEngine.Random.Range(0, 6)+1);
         Rarity = (ItemRarity) UnityEngine.Random.Range(0, 5);
 
         try

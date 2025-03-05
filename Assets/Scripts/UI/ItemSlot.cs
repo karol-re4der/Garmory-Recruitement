@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IInitializePotentialDragHandler, IDragHandler
 {
     public Item Item;
     public Image RarityImage;
     public Image ItemImage;
     public Image CategoryImage;
     public bool IsEquipped;
+    public ItemCategory SlotCategory = ItemCategory.Any;
 
     private DateTime _lastClickTime = DateTime.MinValue;
-
-    public void ClearSlot()
-    {
-
-    }
 
     public void LinkItem(Item item)
     {
@@ -52,37 +49,76 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    public void OnClick()
+    public void SwapItems(ItemSlot targetSlot)
     {
-        DateTime now = DateTime.Now;
-        if ((now - _lastClickTime)<Shortcuts.DoubleClickSpeed)
+        Item localItem = Item;
+        Item remoteItem = targetSlot.Item;
+
+        if (localItem != null) UnlinkItem();
+        if (remoteItem != null) targetSlot.UnlinkItem();
+
+        if (remoteItem != null) LinkItem(remoteItem);
+        if (localItem != null) targetSlot.LinkItem(localItem);
+    }
+
+    #region events
+    public void OnInitializePotentialDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (Item != null)
         {
-            if (Item != null)
+            Shortcuts.DragAndDropHandler.Grab(this);
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Shortcuts.DragAndDropHandler.Drop();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Shortcuts.DragAndDropHandler.RegisterHover(this);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Shortcuts.DragAndDropHandler.ClearHover();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (Item != null)
+        {
+            //Double click
+            DateTime now = DateTime.Now;
+            if ((now - _lastClickTime) < Shortcuts.DoubleClickSpeed)
             {
                 if (IsEquipped)
                 {
-                    UnequipItem();
+                    Shortcuts.Inventory.FindEmptySlot().SwapItems(this);
                 }
                 else
                 {
-                    EquipItem();
+                    Shortcuts.Inventory.FindDestinationForCategory(Item.Category).SwapItems(this);
                 }
+                _lastClickTime = DateTime.MinValue;
             }
-            _lastClickTime = DateTime.MinValue;
-        }
-        else
-        {
-            _lastClickTime = DateTime.Now;
+            else
+            {
+                _lastClickTime = DateTime.Now;
+            }
         }
     }
 
-    public void UnequipItem()
-    {
-        Shortcuts.Inventory.UnequipFromSlot(this);
-    }
-
-    public void EquipItem()
-    {
-        Shortcuts.Inventory.EquipFromSlot(this);
-    }
+    #endregion
 }

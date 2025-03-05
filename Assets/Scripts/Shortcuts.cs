@@ -18,6 +18,19 @@ public static class Shortcuts
             return _inv;
         }
     }
+
+    private static DragAndDropHandler _dad;
+    public static DragAndDropHandler DragAndDropHandler
+    {
+        get
+        {
+            if (_dad == null)
+            {
+                _dad = GameObject.Find("Canvas/DragAndDropPointer/")?.GetComponent<DragAndDropHandler>();
+            }
+            return _dad;
+        }
+    }
     #endregion
 
     #region paths

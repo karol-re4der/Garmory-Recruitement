@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class Inventory : MonoBehaviour
 {
     public Transform BackpackGrid;
     public Transform CharacterGrid;
-    public ItemSlot WeaponSlot;
-    public ItemSlot ArmorSlot;
-    public ItemSlot HelmetSlot;
-    public ItemSlot RingSlot;
-    public ItemSlot NecklaceSlot;
-    public ItemSlot BootsSlot;
 
+    public List<ItemSlot> EquipementSlots;
 
     public GameObject ItemSlotPrefab;
 
@@ -26,10 +22,9 @@ public class Inventory : MonoBehaviour
         FillWithItems();
     }
 
-
     public void FillWithSpaces()
     {
-        for(int i = 0; i<100; i++)
+        for(int i = 0; i<20; i++)
         {
             ItemSlot newSpace = GameObject.Instantiate(ItemSlotPrefab, BackpackGrid).GetComponent<ItemSlot>();
 
@@ -39,7 +34,7 @@ public class Inventory : MonoBehaviour
 
     public void FillWithItems()
     {
-        for(int i = 0; i<_itemSlots.Count-1; i++)
+        for(int i = 0; i<_itemSlots.Count-10; i++)
         {
             Item newItem = new Item();
             newItem.Randomize();
@@ -47,47 +42,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void EquipFromSlot(ItemSlot slot)
+    public ItemSlot FindDestinationForCategory(ItemCategory cat)
     {
-        ItemSlot targetSlot = null;
-        switch (slot.Item.Category)
+        ItemSlot destination = EquipementSlots.First(x => x.SlotCategory == cat);
+
+        if (destination == null)
         {
-            case ItemCategory.Weapon:
-                targetSlot = WeaponSlot;
-                break;
-            case ItemCategory.Armor:
-                targetSlot = ArmorSlot;
-                break;
-            case ItemCategory.Helmet:
-                targetSlot = HelmetSlot;
-                break;
-            case ItemCategory.Boots:
-                targetSlot = BootsSlot;
-                break;
-            case ItemCategory.Ring:
-                targetSlot = RingSlot;
-                break;
-            case ItemCategory.Necklace:
-                targetSlot = NecklaceSlot;
-                break;
+            throw new Exception("Not slot found for this type of equipement!");
         }
 
-        Item oldItem = targetSlot.Item;
-        Item newItem = slot.Item;
-
-        targetSlot.UnlinkItem();
-        targetSlot.LinkItem(newItem);
-        slot.UnlinkItem();
-        if (oldItem != null)
-        {
-            FindEmptySlot().LinkItem(oldItem);
-        }
-    }
-
-    public void UnequipFromSlot(ItemSlot slot)
-    {
-        FindEmptySlot().LinkItem(slot.Item);
-        slot.UnlinkItem();
+        return destination;
     }
 
     public ItemSlot FindEmptySlot()
