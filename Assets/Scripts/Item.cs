@@ -25,29 +25,33 @@ public enum ItemRarity
 
 public class Item
 {
+    public Sprite ItemSprite;
+
     public ItemCategory Category;
     public ItemRarity Rarity;
-    public Sprite ItemSprite;
     public Dictionary<string, float> Stats = new Dictionary<string, float>();
-    public string ItemName = "Dragon";
+    public string ItemName = "";
 
     public string CompleteName
     {
         get
         {
-            return Rarity.ToString() + " " + ItemName + " " + Category.ToString();
+            return Rarity.ToString() + " " + ItemName.Insert(ItemName.Length-Category.ToString().Length, " ");
         }
     }
 
     public void Randomize()
     {
-        Category = (ItemCategory) (UnityEngine.Random.Range(0, 6)+1);
-        Rarity = (ItemRarity) UnityEngine.Random.Range(0, 5);
+        Category = (ItemCategory)2;//(UnityEngine.Random.Range(0, 6)+1);
+        Rarity = (ItemRarity)1;// UnityEngine.Random.Range(0, 5);
 
-        Stats[Shortcuts.DEFENCE_STAT_KEY] = (float)UnityEngine.Random.Range(1, 10);
-        Stats[Shortcuts.DAMAGE_STAT_KEY] = (float)UnityEngine.Random.Range(5, 20);
-        Stats[Shortcuts.SPEED_STAT_KEY] = UnityEngine.Random.Range(0f, 1f)*20f;
+        Stats[Shortcuts.DEFENCE_STAT_KEY] = 1;// (float)UnityEngine.Random.Range(1, 10);
+        Stats[Shortcuts.DAMAGE_STAT_KEY] = 1;//(float)UnityEngine.Random.Range(5, 20);
+        Stats[Shortcuts.SPEED_STAT_KEY] = 1;//UnityEngine.Random.Range(0f, 1f)*20f;
+    }
 
+    public void LoadRelevantSprite()
+    {
         try
         {
             string path = "";
@@ -75,9 +79,9 @@ public class Item
             }
             ItemSprite = Resources.Load<Sprite>(path);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-
+            Debug.Log("Could not load item sprite.. please verify.");
         }
     }
 

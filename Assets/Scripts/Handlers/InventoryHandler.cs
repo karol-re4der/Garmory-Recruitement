@@ -6,6 +6,7 @@ using System.Linq;
 using System;
 using TMPro;
 using System.Globalization;
+using Newtonsoft.Json.Linq;
 
 public class InventoryHandler : MonoBehaviour
 {
@@ -20,15 +21,26 @@ public class InventoryHandler : MonoBehaviour
     public CharacterHandler Character;
 
     private List<ItemSlot> _itemSlots = new List<ItemSlot>();
+    private bool _itemsUpToDate = false;
 
     void Start()
     {
-        FillWithSpaces();
-        FillWithItems();
+        _fillWithSpaces();
+        Shortcuts.NETWORK.UpdateItemList();
         RefreshStats();
     }
 
-    public void FillWithSpaces()
+    void Update()
+    {
+        if (!_itemsUpToDate && Shortcuts.NETWORK.ResponseUpToDate)
+        {
+            List<Item> items = _extractItemsFromJson(Shortcuts.NETWORK.ServerResponse);
+            _fillWithItems(items);
+            _itemsUpToDate = true;
+        }
+    }
+
+    private void _fillWithSpaces()
     {
         for(int i = 0; i< Shortcuts.INVENTORY_SIZE; i++)
         {
@@ -38,14 +50,52 @@ public class InventoryHandler : MonoBehaviour
         }
     }
 
-    public void FillWithItems()
+    private void _fillWithItems(List<Item> items)
     {
-        for(int i = 0; i<UnityEngine.Random.Range(5, 99); i++)
+        foreach(Item item in items)
         {
-            Item newItem = new Item();
-            newItem.Randomize();
-            _itemSlots[i].LinkItem(newItem, false);
+            ItemSlot emptySlot = FindEmptySlot();
+            if (emptySlot == null)
+            {
+                Debug.Log("No empty slot available for item.. please check");
+                break;
+            }
+
+            emptySlot.LinkItem(item);
         }
+    }
+
+    private List<Item> _extractItemsFromJson(string json)
+    {
+        List<Item> items = new List<Item>();
+        try
+        {
+            JObject jobj = JObject.Parse(json);
+
+            foreach (JObject jItem in jobj["Items"])
+            {
+                Item item = new Item();
+                item.ItemName = (string)jItem["Name"];
+                item.Rarity = (ItemRarity)Enum.Parse(typeof(ItemRarity), (string)jItem["Rarity"]);
+                item.Category = (ItemCategory)Enum.Parse(typeof(ItemCategory), (string)jItem["Category"]);
+                item.Stats["Damage"] = (float)jItem["Damage"];
+                item.Stats["HealthPoints"] = (float)jItem["HealthPoints"];
+                item.Stats["Defense"] = (float)jItem["Defense"];
+                item.Stats["LifeSteal"] = (float)jItem["LifeSteal"];
+                item.Stats["CriticalStrikeChance"] = (float)jItem["CriticalStrikeChance"];
+                item.Stats["AttackSpeed"] = (float)jItem["AttackSpeed"];
+                item.Stats["MovementSpeed"] = (float)jItem["MovementSpeed"];
+                item.Stats["Luck"] = (float)jItem["Luck"];
+                item.LoadRelevantSprite();
+                items.Add(item);
+            }
+
+        }
+        catch(Exception ex)
+        {
+            Debug.Log("Could not parse json string of items.. was server response invalid?");
+        }
+        return items;
     }
 
     public ItemSlot FindDestinationForCategory(ItemCategory cat)

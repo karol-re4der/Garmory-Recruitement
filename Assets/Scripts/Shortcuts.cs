@@ -57,17 +57,30 @@ public static class Shortcuts
             return _toast;
         }
     }
+
+    private static NetworkHandler _net;
+    public static NetworkHandler NETWORK
+    {
+        get
+        {
+            if (_net == null)
+            {
+                _net = GameObject.Find("Network/")?.GetComponent<NetworkHandler>();
+            }
+            return _net;
+        }
+    }
     #endregion
 
     #region paths
     public static string RaritySpritePath = "Textures/Items/Rarity/ItemRarity{0}";
     public static string CategorySpritePath = "Textures/Items/Rarity/CategoryIcon{0}";
-    public static string WeaponSpritePath = "Textures/Items/Weapon/{0}Weapon";
-    public static string ArmorSpritePath = "Textures/Items/Armor/{0}Armor";
-    public static string HelmetSpritePath = "Textures/Items/Helmet/{0}Helmet";
-    public static string RingSpritePath = "Textures/Items/Ring/{0}Ring";
-    public static string NecklaceSpritePath = "Textures/Items/Necklace/{0}Necklace";
-    public static string BootsSpritePath = "Textures/Items/Boots/{0}Boots";
+    public static string WeaponSpritePath = "Textures/Items/Weapon/{0}";
+    public static string ArmorSpritePath = "Textures/Items/Armor/{0}";
+    public static string HelmetSpritePath = "Textures/Items/Helmet/{0}";
+    public static string RingSpritePath = "Textures/Items/Ring/{0}";
+    public static string NecklaceSpritePath = "Textures/Items/Necklace/{0}";
+    public static string BootsSpritePath = "Textures/Items/Boots/{0}";
     #endregion
 
     #region settings

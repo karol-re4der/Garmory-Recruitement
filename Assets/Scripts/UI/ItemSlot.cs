@@ -16,6 +16,11 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
 
     private DateTime _lastClickTime = DateTime.MinValue;
 
+    private void _reloadItemSprite()
+    {
+        ItemImage.sprite = Item.ItemSprite;
+    }
+
     public void LinkItem(Item item, bool refreshStats = true)
     {
         Item = item;
@@ -30,6 +35,11 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
         }
 
         ItemImage.sprite = item.ItemSprite;
+        if (item.ItemSprite == null)
+        {
+            Invoke("_reloadItemSprite", 1);
+        }
+
         ItemImage.enabled = true;
 
         if(refreshStats) Shortcuts.INVENTORY.RefreshStats();
