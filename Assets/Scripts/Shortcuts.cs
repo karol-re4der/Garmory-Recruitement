@@ -6,21 +6,21 @@ using System;
 public static class Shortcuts
 {
     #region shortcuts
-    private static Inventory _inv;
-    public static Inventory Inventory
+    private static InventoryHandler _inv;
+    public static InventoryHandler INVENTORY
     {
         get
         {
             if (_inv == null)
             {
-                _inv = GameObject.Find("MainMenu/Content/Inventory/")?.GetComponent<Inventory>();
+                _inv = GameObject.Find("MainMenu/Content/Inventory/")?.GetComponent<InventoryHandler>();
             }
             return _inv;
         }
     }
 
     private static DragAndDropHandler _dad;
-    public static DragAndDropHandler DragAndDropHandler
+    public static DragAndDropHandler DRAG_AND_DROP
     {
         get
         {
@@ -45,6 +45,17 @@ public static class Shortcuts
     #endregion
 
     #region settings
-    public static TimeSpan DoubleClickSpeed = TimeSpan.FromSeconds(0.5);
+    public static TimeSpan DOUBLE_CLICK_SPEED = TimeSpan.FromSeconds(0.5);
+    public static int INVENTORY_SIZE = 100;
+    #endregion
+
+    #region stats
+    public static string DEFENCE_STAT_TEXT = "DEFENCE: {0}";
+    public static string DAMAGE_STAT_TEXT = "DAMAGE: {0}";
+    public static string SPEED_STAT_TEXT = "SPEED: {0}%";
+
+    public static string DEFENCE_STAT_KEY = "Defence";
+    public static string DAMAGE_STAT_KEY = "Damage";
+    public static string SPEED_STAT_KEY = "Speed";
     #endregion
 }

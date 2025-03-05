@@ -16,7 +16,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
 
     private DateTime _lastClickTime = DateTime.MinValue;
 
-    public void LinkItem(Item item)
+    public void LinkItem(Item item, bool refreshStats = true)
     {
         Item = item;
         try
@@ -31,6 +31,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
 
         ItemImage.sprite = item.ItemSprite;
         ItemImage.enabled = true;
+
+        if(refreshStats) Shortcuts.INVENTORY.RefreshStats();
     }
 
     public void UnlinkItem()
@@ -76,23 +78,23 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
     {
         if (Item != null)
         {
-            Shortcuts.DragAndDropHandler.Grab(this);
+            Shortcuts.DRAG_AND_DROP.Grab(this);
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Shortcuts.DragAndDropHandler.Drop();
+        Shortcuts.DRAG_AND_DROP.Drop();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Shortcuts.DragAndDropHandler.RegisterHover(this);
+        Shortcuts.DRAG_AND_DROP.RegisterHover(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Shortcuts.DragAndDropHandler.ClearHover();
+        Shortcuts.DRAG_AND_DROP.ClearHover();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -101,15 +103,15 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
         {
             //Double click
             DateTime now = DateTime.Now;
-            if ((now - _lastClickTime) < Shortcuts.DoubleClickSpeed)
+            if ((now - _lastClickTime) < Shortcuts.DOUBLE_CLICK_SPEED)
             {
                 if (IsEquipped)
                 {
-                    Shortcuts.Inventory.FindEmptySlot().SwapItems(this);
+                    Shortcuts.INVENTORY.FindEmptySlot().SwapItems(this);
                 }
                 else
                 {
-                    Shortcuts.Inventory.FindDestinationForCategory(Item.Category).SwapItems(this);
+                    Shortcuts.INVENTORY.FindDestinationForCategory(Item.Category).SwapItems(this);
                 }
                 _lastClickTime = DateTime.MinValue;
             }

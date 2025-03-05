@@ -44,7 +44,7 @@ public class DragAndDropHandler : MonoBehaviour
             {
                 if(_lastHover.IsEquipped && _lastHover.SlotCategory != SlotHeld.Item.Category)
                 {
-                    _lastHover = Shortcuts.Inventory.FindDestinationForCategory(SlotHeld.Item.Category);
+                    _lastHover = Shortcuts.INVENTORY.FindDestinationForCategory(SlotHeld.Item.Category);
                 }
                 SlotHeld.SwapItems(_lastHover);
             }

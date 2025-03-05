@@ -28,13 +28,17 @@ public class Item
     public ItemCategory Category;
     public ItemRarity Rarity;
     public Sprite ItemSprite;
-    public List<Tuple<string, float>> Stats;
+    public Dictionary<string, float> Stats = new Dictionary<string, float>();
     public string ItemName = "Dragon";
 
     public void Randomize()
     {
         Category = (ItemCategory) (UnityEngine.Random.Range(0, 6)+1);
         Rarity = (ItemRarity) UnityEngine.Random.Range(0, 5);
+
+        Stats[Shortcuts.DEFENCE_STAT_KEY] = (float)UnityEngine.Random.Range(1, 10);
+        Stats[Shortcuts.DAMAGE_STAT_KEY] = (float)UnityEngine.Random.Range(5, 20);
+        Stats[Shortcuts.SPEED_STAT_KEY] = UnityEngine.Random.Range(0f, 1f)*20f;
 
         try
         {
