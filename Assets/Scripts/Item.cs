@@ -31,6 +31,14 @@ public class Item
     public Dictionary<string, float> Stats = new Dictionary<string, float>();
     public string ItemName = "Dragon";
 
+    public string CompleteName
+    {
+        get
+        {
+            return Rarity.ToString() + " " + ItemName + " " + Category.ToString();
+        }
+    }
+
     public void Randomize()
     {
         Category = (ItemCategory) (UnityEngine.Random.Range(0, 6)+1);
@@ -70,6 +78,18 @@ public class Item
         catch(Exception ex)
         {
 
+        }
+    }
+
+    public float GetStat(string statKey)
+    {
+        if (Stats.ContainsKey(statKey))
+        {
+            return Stats[statKey];
+        }
+        else
+        {
+            return 0;
         }
     }
 }

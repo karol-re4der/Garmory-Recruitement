@@ -63,6 +63,19 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
         if (localItem != null) targetSlot.LinkItem(localItem);
     }
 
+    public void CallForToast()
+    {
+        Shortcuts.TOAST.Show(Item);
+    }
+
+    public void CallForToastHidding()
+    {
+        if (Shortcuts.TOAST.ItemAssociated == Item)
+        {
+            Shortcuts.TOAST.Hide();
+        }
+    }
+
     #region events
     public void OnInitializePotentialDrag(PointerEventData eventData)
     {
@@ -90,11 +103,31 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         Shortcuts.DRAG_AND_DROP.RegisterHover(this);
+
+        if (Item != null)
+        {
+            if (Shortcuts.TOAST.ItemAssociated != null)
+            {
+                CallForToast();
+            }
+            else
+            {
+                float delay = (float)Shortcuts.TOAST_DELAY.TotalMilliseconds / 1000f;
+                Invoke("CallForToast", delay);
+            }
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        CancelInvoke();
         Shortcuts.DRAG_AND_DROP.ClearHover();
+
+        if (Item != null)
+        {
+            float delay = (float)Shortcuts.TOAST_DELAY.TotalMilliseconds / 2000f;
+            Invoke("CallForToastHidding", delay);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

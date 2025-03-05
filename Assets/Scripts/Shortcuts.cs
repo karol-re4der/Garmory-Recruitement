@@ -19,6 +19,19 @@ public static class Shortcuts
         }
     }
 
+    private static CharacterHandler _char;
+    public static CharacterHandler CHARACTER
+    {
+        get
+        {
+            if (_char == null)
+            {
+                _char = Camera.main.GetComponent<CharacterHandler>();
+            }
+            return _char;
+        }
+    }
+
     private static DragAndDropHandler _dad;
     public static DragAndDropHandler DRAG_AND_DROP
     {
@@ -29,6 +42,19 @@ public static class Shortcuts
                 _dad = GameObject.Find("Canvas/DragAndDropPointer/")?.GetComponent<DragAndDropHandler>();
             }
             return _dad;
+        }
+    }
+
+    private static ItemToast _toast;
+    public static ItemToast TOAST
+    {
+        get
+        {
+            if (_toast == null)
+            {
+                _toast = GameObject.Find("Canvas/ItemToast/")?.GetComponent<ItemToast>();
+            }
+            return _toast;
         }
     }
     #endregion
@@ -47,6 +73,7 @@ public static class Shortcuts
     #region settings
     public static TimeSpan DOUBLE_CLICK_SPEED = TimeSpan.FromSeconds(0.5);
     public static int INVENTORY_SIZE = 100;
+    public static TimeSpan TOAST_DELAY = TimeSpan.FromSeconds(0.5);
     #endregion
 
     #region stats
