@@ -33,4 +33,12 @@ public class CharacterHandler : MonoBehaviour
         }
         return 0;
     }
+
+    public int CountDamage()
+    {
+        int damage = 0;
+        damage = (int) GetStatValue(Shortcuts.DAMAGE_STAT_KEY);
+
+        return damage;
+    }
 }

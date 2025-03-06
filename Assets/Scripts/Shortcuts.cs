@@ -103,6 +103,7 @@ public static class Shortcuts
     public static float MOVEMENT_SPEED = 10f;
     public static float ROTATION_SPEED = 5f;
     public static float MAX_VERTICAL_ROTATION = 30; //in degrees
+    public static TimeSpan PLAYER_ATTACK_COOLDOWN = TimeSpan.FromSeconds(0.25f); //in seconds
     #endregion
 
     #region strings
@@ -110,10 +111,11 @@ public static class Shortcuts
     public static string DAMAGE_STAT_TEXT = "DAMAGE: {0}";
     public static string SPEED_STAT_TEXT = "SPEED: {0}%";
 
-    public static string DEFENCE_STAT_KEY = "Defence";
+    public static string DEFENCE_STAT_KEY = "Defense";
     public static string DAMAGE_STAT_KEY = "Damage";
     public static string SPEED_STAT_KEY = "Speed";
 
     public static string LOADING_TEXT = "Loading Items";
+    public static string ENEMY_HP_TEXT = "{0}/{1}";
     #endregion
 }

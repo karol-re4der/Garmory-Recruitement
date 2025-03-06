@@ -1,15 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
 
     public Transform PlayerModel;
     public CharacterController Controller;
+    public CharacterHandler Character;
     public Animator HandsAnimator;
-    
+    public Weapon WeaponHeld;
+
+    private DateTime _lastAttackTime = DateTime.MinValue;
+    private bool _attackQueued = false;
+
     public void HandleInputs()
+    {
+        _handleMovement();
+        _handleRotation();
+        _handleActions();
+    }
+
+    private void _handleMovement()
     {
         //basic movement - left, right, forward, backward
         float yAxis = Input.GetAxis("Horizontal");
@@ -28,7 +41,10 @@ public class PlayerMovementHandler : MonoBehaviour
             HandsAnimator.SetBool("Moving", false);
         }
         Controller.Move(motion);
+    }
 
+    private void _handleRotation()
+    {
         //horizontal rotation
         float extraRotation = Input.GetKey(KeyCode.E) ? 50 : 0;
         extraRotation -= Input.GetKey(KeyCode.Q) ? 50 : 0;
@@ -47,11 +63,28 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             Camera.main.transform.localRotation = rotationCache;
         }
+    }
 
+    private void _handleActions()
+    {
         //Actions
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || _attackQueued)
         {
-            HandsAnimator.SetTrigger("Thrust");
+            DateTime now = DateTime.Now;
+            if ((now - _lastAttackTime) > Shortcuts.PLAYER_ATTACK_COOLDOWN)
+            {
+                HandsAnimator.SetTrigger("Thrust");
+                if (WeaponHeld.Contact != null)
+                {
+                    WeaponHeld.Contact.OnHit(Character.CountDamage());
+                }
+                _lastAttackTime = now;
+                _attackQueued = false;
+            }
+            else
+            {
+                _attackQueued = true;
+            }
         }
     }
 }

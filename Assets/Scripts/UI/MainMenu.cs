@@ -38,5 +38,6 @@ public class MainMenu : SubMenu
     {
         Cursor.lockState = CursorLockMode.Locked;
         Shortcuts.MAIN_HANDLER.SetRunning(true);
+        Shortcuts.TOAST.Hide();
     }
 }
