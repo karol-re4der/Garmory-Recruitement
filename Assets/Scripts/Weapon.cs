@@ -5,7 +5,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Enemy Contact;
-    void OnTriggerEnter(Collider collider)
+    public ParticleSystem ParticleSystem;
+    void OnTriggerStay(Collider collider)
     {
         Contact = collider.gameObject.GetComponent<Enemy>();
     }
@@ -13,5 +14,10 @@ public class Weapon : MonoBehaviour
     void OnTriggerExit(Collider collider)
     {
         Contact = null;
+    }
+
+    public void OnEnemyHit()
+    {
+        ParticleSystem.Play();
     }
 }

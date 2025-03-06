@@ -77,6 +77,7 @@ public class PlayerMovementHandler : MonoBehaviour
                 if (WeaponHeld.Contact != null)
                 {
                     WeaponHeld.Contact.OnHit(Character.CountDamage());
+                    WeaponHeld.OnEnemyHit();
                 }
                 _lastAttackTime = now;
                 _attackQueued = false;
