@@ -117,5 +117,7 @@ public static class Shortcuts
 
     public static string LOADING_TEXT = "Loading Items";
     public static string ENEMY_HP_TEXT = "{0}/{1}";
+    public static string SCORE_TEXT = "Score: {0}";
+    public static string PLAYTIME_TEXT = "Playtime: {0}";
     #endregion
 }

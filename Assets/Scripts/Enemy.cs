@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public string Title;
     public int MaxHealth;
     public int CurrentHealth;
+    public int ScoreValue = 0;
 
     public TextMeshPro TitleText;
     public TextMeshPro HealthText;
@@ -24,22 +25,27 @@ public class Enemy : MonoBehaviour
             case 0:
                 rarity = "Common";
                 MaxHealth = 20;
+                ScoreValue = 1;
                 break;
             case 1:
                 rarity = "Uncommon";
                 MaxHealth = 40;
+                ScoreValue = 2;
                 break;
             case 2:
                 rarity = "Rare";
                 MaxHealth = 60;
+                ScoreValue = 3;
                 break;
             case 3:
                 rarity = "Epic";
                 MaxHealth = 80;
+                ScoreValue = 4;
                 break;
             case 4:
                 rarity = "Legendary";
                 MaxHealth = 100;
+                ScoreValue = 5;
                 break;
         }
 
@@ -116,6 +122,7 @@ public class Enemy : MonoBehaviour
         EnemyAnimator.SetTrigger("Death");
         TitleText.gameObject.SetActive(false);
         HealthText.gameObject.SetActive(false);
+        Shortcuts.MAIN_HANDLER.Score += ScoreValue;
         Invoke("Destroy", 1);
     }
 
