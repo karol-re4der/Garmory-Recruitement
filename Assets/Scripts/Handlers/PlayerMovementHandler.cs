@@ -7,20 +7,15 @@ public class PlayerMovementHandler : MonoBehaviour
 
     public Transform PlayerModel;
     public CharacterController Controller;
+    public Animator HandsAnimator;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
-    {
-        HandleInputs();
-    }
-
     public void HandleInputs()
     {
-
         //basic movement - left, right, forward, backward
         float yAxis = Input.GetAxis("Horizontal");
         float xAxis = Input.GetAxis("Vertical");
@@ -29,6 +24,14 @@ public class PlayerMovementHandler : MonoBehaviour
         dir = dir.normalized;
 
         Vector3 motion = Shortcuts.MOVEMENT_SPEED * combinedAxis * Time.deltaTime * dir;
+        if (motion.magnitude > 0)
+        {
+            HandsAnimator.SetBool("Moving", true);
+        }
+        else
+        {
+            HandsAnimator.SetBool("Moving", false);
+        }
         Controller.Move(motion);
 
         //horizontal rotation
@@ -49,6 +52,11 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             Camera.main.transform.localRotation = rotationCache;
         }
-        
+
+        //Actions
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            HandsAnimator.SetTrigger("Thrust");
+        }
     }
 }
