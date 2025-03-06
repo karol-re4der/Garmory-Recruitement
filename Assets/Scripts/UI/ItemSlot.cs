@@ -156,6 +156,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
                 {
                     Shortcuts.INVENTORY.FindDestinationForCategory(Item.Category).SwapItems(this);
                 }
+                OnPointerEnter(null);
                 _lastClickTime = DateTime.MinValue;
             }
             else
@@ -164,6 +165,5 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPoin
             }
         }
     }
-
     #endregion
 }
