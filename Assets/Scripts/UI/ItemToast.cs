@@ -33,7 +33,7 @@ public class ItemToast : MonoBehaviour
 
         string defenceValue = ((int)item.GetStat(Shortcuts.DEFENCE_STAT_KEY)).ToString();
         string damageValue = ((int)item.GetStat(Shortcuts.DAMAGE_STAT_KEY)).ToString();
-        string speedValue = (item.GetStat(Shortcuts.SPEED_STAT_KEY) + 100f).ToString();
+        string speedValue = ((int)item.GetStat(Shortcuts.SPEED_STAT_KEY)).ToString();
 
         DefenceStatText.text = Shortcuts.DEFENCE_STAT_TEXT.Replace("{0}", defenceValue);
         DamageStatText.text = Shortcuts.DAMAGE_STAT_TEXT.Replace("{0}", damageValue);

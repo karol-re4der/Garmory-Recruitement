@@ -125,7 +125,7 @@ public class InventoryHandler : MonoBehaviour
 
             string defenceValue = ((int)Character.GetStatValue(Shortcuts.DEFENCE_STAT_KEY)).ToString();
             string damageValue = ((int)Character.GetStatValue(Shortcuts.DAMAGE_STAT_KEY)).ToString();
-            string speedValue = (Character.GetStatValue(Shortcuts.SPEED_STAT_KEY) + 100f).ToString();
+            string speedValue = ((int)(Character.GetStatValue(Shortcuts.SPEED_STAT_KEY) + 100f)).ToString();
 
             DefenceStatText.text = Shortcuts.DEFENCE_STAT_TEXT.Replace("{0}", defenceValue);
             DamageStatText.text = Shortcuts.DAMAGE_STAT_TEXT.Replace("{0}", damageValue);

@@ -31,7 +31,7 @@ public class PlayerMovementHandler : MonoBehaviour
         float combinedAxis = Mathf.Min(dir.magnitude, 1);
         dir = dir.normalized;
 
-        Vector3 motion = Shortcuts.MOVEMENT_SPEED * combinedAxis * Time.deltaTime * dir;
+        Vector3 motion = Shortcuts.MOVEMENT_SPEED * combinedAxis * Time.deltaTime * dir * (1f+(Character.GetStatValue(Shortcuts.SPEED_STAT_KEY)/100f));
         if (motion.magnitude > 0)
         {
             HandsAnimator.SetBool("Moving", true);

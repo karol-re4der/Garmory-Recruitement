@@ -115,11 +115,11 @@ public static class Shortcuts
     #region strings
     public static string DEFENCE_STAT_TEXT = "DEFENCE: {0}";
     public static string DAMAGE_STAT_TEXT = "DAMAGE: {0}";
-    public static string SPEED_STAT_TEXT = "SPEED: {0}%";
+    public static string SPEED_STAT_TEXT = "MOVEMENT: {0}%";
 
     public static string DEFENCE_STAT_KEY = "Defense";
     public static string DAMAGE_STAT_KEY = "Damage";
-    public static string SPEED_STAT_KEY = "Speed";
+    public static string SPEED_STAT_KEY = "MovementSpeed";
 
     public static string LOADING_TEXT = "Loading Items";
     public static string ENEMY_HP_TEXT = "{0}/{1}";
