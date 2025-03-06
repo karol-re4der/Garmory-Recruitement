@@ -7,11 +7,11 @@ using System;
 public class ScoreHandler : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI PlayTimeText;
+    public TextMeshProUGUI NextWaveText;
 
     void Update()
     {
-        PlayTimeText.text = Shortcuts.PLAYTIME_TEXT.Replace("{0}", Shortcuts.MAIN_HANDLER.PlayTime.ToString(@"hh\:mm\:ss"));
+        NextWaveText.text = Shortcuts.NEXT_WAVE_TEXT.Replace("{0}", ((int)Shortcuts.MAIN_HANDLER.WaveCountdown.TotalSeconds).ToString());
         ScoreText.text = Shortcuts.SCORE_TEXT.Replace("{0}", Shortcuts.MAIN_HANDLER.Score.ToString());
     }
 }

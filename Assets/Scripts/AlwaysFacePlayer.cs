@@ -7,6 +7,6 @@ public class AlwaysFacePlayer : MonoBehaviour
     public Transform Player;
     void Update()
     {
-        transform.LookAt(Player);
+        transform.LookAt(Shortcuts.CHARACTER.transform);
     }
 }

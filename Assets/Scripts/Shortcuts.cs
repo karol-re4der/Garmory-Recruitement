@@ -104,6 +104,12 @@ public static class Shortcuts
     public static float ROTATION_SPEED = 5f;
     public static float MAX_VERTICAL_ROTATION = 30; //in degrees
     public static TimeSpan PLAYER_ATTACK_COOLDOWN = TimeSpan.FromSeconds(0.25f); //in seconds
+    public static Color HP_HIGH_COLOR = Color.green;
+    public static Color HP_LOW_COLOR = Color.red;
+    public static float ENEMY_SPAWN_RADIUS = 2f; //distance around spawn point
+    public static float ENEMY_SPAWN_DISTANCE = 15f; //distance from player
+    public static TimeSpan ROUND_DURATION = TimeSpan.FromSeconds(30);
+    public static int ENEMIES_PER_ROUND = 3;
     #endregion
 
     #region strings
@@ -118,6 +124,6 @@ public static class Shortcuts
     public static string LOADING_TEXT = "Loading Items";
     public static string ENEMY_HP_TEXT = "{0}/{1}";
     public static string SCORE_TEXT = "Score: {0}";
-    public static string PLAYTIME_TEXT = "Playtime: {0}";
+    public static string NEXT_WAVE_TEXT = "Next Wave In: {0}";
     #endregion
 }

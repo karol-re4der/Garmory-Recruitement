@@ -24,27 +24,27 @@ public class Enemy : MonoBehaviour
         {
             case 0:
                 rarity = "Common";
-                MaxHealth = 20;
+                MaxHealth = 100;
                 ScoreValue = 1;
                 break;
             case 1:
                 rarity = "Uncommon";
-                MaxHealth = 40;
+                MaxHealth = 200;
                 ScoreValue = 2;
                 break;
             case 2:
                 rarity = "Rare";
-                MaxHealth = 60;
+                MaxHealth = 300;
                 ScoreValue = 3;
                 break;
             case 3:
                 rarity = "Epic";
-                MaxHealth = 80;
+                MaxHealth = 400;
                 ScoreValue = 4;
                 break;
             case 4:
                 rarity = "Legendary";
-                MaxHealth = 100;
+                MaxHealth = 500;
                 ScoreValue = 5;
                 break;
         }
@@ -96,6 +96,7 @@ public class Enemy : MonoBehaviour
     {
         Randomize();
         TitleText.text = Title;
+        EnemyAnimator.SetTrigger("Spawn");
     }
 
     public void OnHit(int damage)
@@ -134,5 +135,8 @@ public class Enemy : MonoBehaviour
     private void _refreshHealthBar()
     {
         HealthText.text = Shortcuts.ENEMY_HP_TEXT.Replace("{0}", CurrentHealth.ToString()).Replace("{1}", MaxHealth.ToString());
+
+        Color newColor = Color.Lerp(Shortcuts.HP_LOW_COLOR, Shortcuts.HP_HIGH_COLOR, (float) CurrentHealth / MaxHealth);
+        HealthText.color = newColor;
     }
 }
