@@ -19,6 +19,7 @@ public class InventoryHandler : MonoBehaviour
     public TextMeshProUGUI DamageStatText;
     public TextMeshProUGUI SpeedStatText;
     public CharacterHandler Character;
+    public LoadingCover Loader;
 
     private List<ItemSlot> _itemSlots = new List<ItemSlot>();
     private bool _itemsUpToDate = false;
@@ -37,6 +38,7 @@ public class InventoryHandler : MonoBehaviour
             List<Item> items = _extractItemsFromJson(Shortcuts.NETWORK.ServerResponse);
             _fillWithItems(items);
             _itemsUpToDate = true;
+            Loader.Hide();
         }
     }
 

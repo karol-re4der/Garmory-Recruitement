@@ -15,4 +15,9 @@ public class GameHandler : MonoBehaviour
             MovementHandler.HandleInputs();
         }
     }
+
+    public void SetRunning(bool state)
+    {
+        IsRunning = state;
+    }
 }

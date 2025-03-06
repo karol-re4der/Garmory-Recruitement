@@ -27,4 +27,16 @@ public class MainMenu : SubMenu
     {
         throw new NotImplementedException();
     }
+
+    protected override void _onFadedIn()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Shortcuts.MAIN_HANDLER.SetRunning(false);
+    }
+
+    protected override void _onFadedOut()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Shortcuts.MAIN_HANDLER.SetRunning(true);
+    }
 }

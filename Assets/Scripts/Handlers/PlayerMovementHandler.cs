@@ -8,12 +8,7 @@ public class PlayerMovementHandler : MonoBehaviour
     public Transform PlayerModel;
     public CharacterController Controller;
     public Animator HandsAnimator;
-
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
+    
     public void HandleInputs()
     {
         //basic movement - left, right, forward, backward

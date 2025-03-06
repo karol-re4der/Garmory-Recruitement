@@ -18,11 +18,11 @@ public class SubMenu : MonoBehaviour
     private Color _fadeStartingColor;
     private Color _fadeTargetColor;
     private float _fadeProgressPerTick;
-    private bool _isFadedIn;
+    public bool IsFadedIn;
 
     public void Switch()
     {
-        if (_isFadedIn)
+        if (IsFadedIn)
         {
             Exit();
         }
@@ -58,7 +58,8 @@ public class SubMenu : MonoBehaviour
         _fadeProgressPerTick = 1f / (FadeDuration * FadeSmoothness);
         float tickDuration = 1f / FadeSmoothness;
 
-        _isFadedIn = true;
+        IsFadedIn = true;
+        _onFadedIn();
         Content.SetActive(true);
         Fade.gameObject.SetActive(true);
         InvokeRepeating("_fadeIn", 0, tickDuration);
@@ -89,7 +90,8 @@ public class SubMenu : MonoBehaviour
         _fadeProgressPerTick = 1f / (FadeDuration * FadeSmoothness);
         float tickDuration = 1f / FadeSmoothness;
 
-        _isFadedIn = false;
+        IsFadedIn = false;
+        _onFadedOut();
         Content.SetActive(false);
         Fade.gameObject.SetActive(true);
         InvokeRepeating("_fadeOut", 0, tickDuration);
@@ -106,5 +108,15 @@ public class SubMenu : MonoBehaviour
             Fade.gameObject.SetActive(false);
             CancelInvoke();
         }
+    }
+
+    protected virtual void _onFadedIn()
+    {
+
+    }
+
+    protected virtual void _onFadedOut()
+    {
+
     }
 }

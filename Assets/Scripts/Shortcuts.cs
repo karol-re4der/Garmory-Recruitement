@@ -6,6 +6,19 @@ using System;
 public static class Shortcuts
 {
     #region shortcuts
+    private static GameHandler _main;
+    public static GameHandler MAIN_HANDLER
+    {
+        get
+        {
+            if (_main == null)
+            {
+                _main = GameObject.Find("Player/")?.GetComponent<GameHandler>();
+            }
+            return _main;
+        }
+    }
+
     private static InventoryHandler _inv;
     public static InventoryHandler INVENTORY
     {
@@ -13,7 +26,7 @@ public static class Shortcuts
         {
             if (_inv == null)
             {
-                _inv = GameObject.Find("MainMenu/Content/Inventory/")?.GetComponent<InventoryHandler>();
+                _inv = GameObject.Find("InventoryMenu/Content/Inventory/")?.GetComponent<InventoryHandler>();
             }
             return _inv;
         }
@@ -92,7 +105,7 @@ public static class Shortcuts
     public static float MAX_VERTICAL_ROTATION = 30; //in degrees
     #endregion
 
-    #region stats
+    #region strings
     public static string DEFENCE_STAT_TEXT = "DEFENCE: {0}";
     public static string DAMAGE_STAT_TEXT = "DAMAGE: {0}";
     public static string SPEED_STAT_TEXT = "SPEED: {0}%";
@@ -100,5 +113,7 @@ public static class Shortcuts
     public static string DEFENCE_STAT_KEY = "Defence";
     public static string DAMAGE_STAT_KEY = "Damage";
     public static string SPEED_STAT_KEY = "Speed";
+
+    public static string LOADING_TEXT = "Loading Items";
     #endregion
 }
